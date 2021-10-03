@@ -20,22 +20,28 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter your pin code: ");
         int pinCode = input.nextInt();
-        return (pinCode == pinCodeMain);
+        return pinCode == pinCodeMain;
     }
+
+    // method above: from what i understood, boolean generally can have either true or false value,
+    // and therefore boolean method returns true value if condition that is
+    // stipulated after 'return' is met;
 
     static void mainMenu() {
         Scanner input = new Scanner(System.in);
         int operation = selectOperation(input);
-        if (operation == 1) {
-            displayBalance();
-        } else if (operation == 2) {
-            takeOutMoney();
-        } else if (operation == 3) {
-            deposit();
-        } else if (operation == 0) {
-            System.out.println("Bye!");
-        } else {
-            System.out.println("Invalid choice");
+        switch (operation) {
+            case 1 -> displayBalance();
+            // above meaning is the same as
+            // case 1:
+            // displayBalance();
+            // break;
+            // improvement with '->' was suggested by IntelliJ;
+            // in fact IntelliJ didn't want to allow me to push to gitHub without this improvement
+            case 2 -> takeOutMoney();
+            case 3 -> deposit();
+            case 0 -> System.out.println("Bye!");
+            default -> System.out.println("Invalid choice");
         }
     }
 
@@ -45,7 +51,11 @@ public class Main {
         System.out.println("Press 2 - print on paper");
         System.out.println("Enter your choice: ");
         int screenPaper = input.nextInt();
-        System.out.println((screenPaper == 1) ? ("Your current balance is: " + balanceMain + " EUR") : ("The planet is out of trees, no paper for you today"));
+        switch (screenPaper) {
+            case 1 -> System.out.println("Your current balance is: " + balanceMain + " EUR");
+            case 2 -> System.out.println("The planet is out of trees, no paper for you today");
+            default -> System.out.println("Invalid choice");
+        }
     }
 
     static void takeOutMoney() {
@@ -73,4 +83,5 @@ public class Main {
         System.out.println("Enter your choice: ");
         return input.nextInt();
     }
+
 }
