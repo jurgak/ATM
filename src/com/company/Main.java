@@ -68,11 +68,15 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the amount you would like to withdraw");
         int withdraw = input.nextInt();
-        System.out.println((withdraw <= balanceMain) ?
-                ("Please take your money: " + withdraw + " EUR") :
-                ("Insufficient funds. Your balance is " + balanceMain + " EUR"));
-        if (withdraw <= balanceMain) {
-            System.out.println("Remaining balance: " + (balanceMain - withdraw) + " EUR");
+        if (withdraw > 0) {
+            System.out.println((withdraw <= balanceMain) ?
+                    ("Please take your money: " + withdraw + " EUR") :
+                    ("Insufficient funds. Your balance is " + balanceMain + " EUR"));
+            if (withdraw <= balanceMain) {
+                System.out.println("Remaining balance: " + (balanceMain - withdraw) + " EUR");
+            }
+        } else {
+            System.out.println("Negative money do not exist");
         }
     }
 
